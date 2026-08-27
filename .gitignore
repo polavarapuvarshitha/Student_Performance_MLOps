@@ -1,13 +1,6 @@
 __pycache__/
 *.pyc
-
-mlruns/
-mlflow.db
-
 .venv/
 venv/
-env/
-
-.vscode/
-
-.DS_Store
+.env
+mlruns/

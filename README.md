@@ -1,55 +1,40 @@
 # Student Performance MLOps
 
-A Machine Learning project that predicts student performance using Python, Scikit-learn, MLflow, FastAPI, GitHub, and Docker.
+## Project Description
 
-## Project Overview
+This project predicts a student's math score using reading score and writing score.
 
-This project follows an MLOps workflow:
-
-- Data preprocessing
-- Model training
-- Model evaluation
-- Experiment tracking with MLflow
-- FastAPI prediction API
-- Docker containerization
-- Git and GitHub version control
-- Docker Hub deployment
+The project follows an MLOps workflow including model training, model saving,
+FastAPI deployment, Docker containerization, and MLflow experiment tracking.
 
 ## Dataset
 
-The project uses the Students Performance dataset.
+Dataset: Students Performance Dataset
 
-The dataset contains student information such as:
-
-- Gender
-- Race/Ethnicity
-- Parental Level of Education
-- Lunch
-- Test Preparation Course
+### Features
 - Reading Score
 - Writing Score
 
+### Target
+- Math Score
+
+## Machine Learning Model
+
+Model used:
+- Linear Regression
+
 ## Model Evaluation
 
-The trained model was evaluated using:
+The model is evaluated using:
 
-- MAE
-- MSE
-- RMSE
-- R² Score
-
-### Results
-
-- MAE: 4.67
-- MSE: 36.31
-- RMSE: 6.03
-- R² Score: 0.85
+- Mean Absolute Error (MAE)
+- R2 Score
 
 ## API
 
-The prediction API is built using FastAPI.
+The trained model is deployed using FastAPI.
 
-### Run locally
+### Run API
 
 ```bash
-python -m uvicorn api.main:app --reload
+python -m uvicorn app:app --reload

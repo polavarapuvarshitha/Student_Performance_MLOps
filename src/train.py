@@ -1,83 +1,69 @@
 import os
 import joblib
+import pandas as pd
 import mlflow
 import mlflow.sklearn
 
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.pipeline import Pipeline
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, r2_score
 
-from data_preprocessing import prepare_data
+# Load dataset
+df = pd.read_csv("data/StudentsPerformance.csv")
 
+print("Dataset loaded successfully!")
 
-DATA_PATH = "data/StudentsPerformance.csv"
-MODEL_PATH = "models/model.pkl"
+# Features and target
+X = df[["reading score", "writing score"]]
+y = df["math score"]
 
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
 
-def main():
+# Model
+model = LinearRegression()
 
-    # Create models folder if it does not exist
-    os.makedirs("models", exist_ok=True)
+# MLflow experiment
+mlflow.set_experiment("Student_Performance")
 
-    # Prepare the data
-    (
-        X_train,
-        X_test,
-        y_train,
-        y_test,
-        preprocessor
-    ) = prepare_data(DATA_PATH)
+with mlflow.start_run():
 
-    # Create ML model
-    model = RandomForestRegressor(
-        n_estimators=100,
-        random_state=42
-    )
+    # Train
+    model.fit(X_train, y_train)
 
-    # Create complete ML pipeline
-    pipeline = Pipeline(
-        steps=[
-            ("preprocessor", preprocessor),
-            ("model", model)
-        ]
-    )
+    print("Model trained successfully!")
 
-    # Create MLflow experiment
-    mlflow.set_experiment(
-        "Student_Performance_Prediction"
-    )
+    # Prediction
+    y_pred = model.predict(X_test)
 
-    # Start MLflow run
-    with mlflow.start_run():
+    print("Predicted output:", y_pred[0])
 
-        # Train model
-        pipeline.fit(X_train, y_train)
+    # Metrics
+    mae = mean_absolute_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
 
-        # Log model parameters
-        mlflow.log_param(
-            "model",
-            "RandomForestRegressor"
-        )
+    print("MAE:", mae)
+    print("R2 Score:", r2)
 
-        mlflow.log_param(
-            "n_estimators",
-            100
-        )
+    # Log parameters
+    mlflow.log_param("model", "LinearRegression")
+    mlflow.log_param("test_size", 0.2)
 
-        # Save model using Joblib
-        joblib.dump(
-            pipeline,
-            MODEL_PATH
-        )
+    # Log metrics
+    mlflow.log_metric("MAE", mae)
+    mlflow.log_metric("R2_Score", r2)
 
-        # Log model to MLflow
-        mlflow.sklearn.log_model(
-            pipeline,
-            "model"
-        )
+    # Log model
+    mlflow.sklearn.log_model(model, "model")
 
-        print("Model trained successfully!")
-        print("Model saved at:", MODEL_PATH)
+# Save model locally
+os.makedirs("models", exist_ok=True)
+joblib.dump(model, "models/model.pkl")
 
-
-if __name__ == "__main__":
-    main()
+print("Model saved successfully!")
+print("MLflow tracking completed!")
