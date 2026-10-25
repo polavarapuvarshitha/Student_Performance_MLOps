@@ -1,0 +1,43 @@
+﻿name: Student Performance MLOps CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  run-ml-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas scikit-learn numpy
+
+      - name: Validate data
+        run: python src/validate_data.py
+
+      - name: Run ML pipeline
+        run: python pipelines/pipeline.py
+
+      - name: Upload pipeline outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: student-performance-mlops-results
+          path: |
+            outputs/metrics.json
+            models/model.pkl
+            artifacts/preprocessor.pkl
+          if-no-files-found: warn
