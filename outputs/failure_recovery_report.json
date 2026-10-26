@@ -1,0 +1,33 @@
+{
+    "experiment": "Pipeline Failure Handling and Recovery",
+    "total_tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "results": [
+        {
+            "test": "Missing data file",
+            "status": "PASS",
+            "message": "Missing file detected; pipeline can stop safely."
+        },
+        {
+            "test": "Invalid datatype",
+            "status": "PASS",
+            "message": "Invalid numeric value detected and exception handled."
+        },
+        {
+            "test": "Schema mismatch",
+            "status": "PASS",
+            "message": "Missing required columns: ['lunch', 'parental level of education', 'race/ethnicity', 'test preparation course']"
+        },
+        {
+            "test": "Preprocessing error",
+            "status": "PASS",
+            "message": "Preprocessing cannot continue. Missing features: ['writing score']"
+        },
+        {
+            "test": "Missing model artifact",
+            "status": "PASS",
+            "message": "Model artifact not found: missing_model.pkl. Missing model detected. Recovery action: retrain the model or restore a valid saved model."
+        }
+    ]
+}
