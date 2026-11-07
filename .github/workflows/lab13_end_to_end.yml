@@ -2,9 +2,11 @@ name: Student Performance Lab 13
 
 on:
   push:
-    branches: [main, master]
+    branches: [main, master, experiment9-failure-recovery]
+
   pull_request:
-    branches: [main, master]
+    branches: [main, master, experiment9-failure-recovery]
+
   workflow_dispatch:
 
 jobs:
