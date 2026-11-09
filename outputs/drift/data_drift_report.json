@@ -1,0 +1,51 @@
+[
+    {
+        "feature": "reading score",
+        "feature_type": "Numerical",
+        "drift_score": 0.0748,
+        "p_value": 0.1823,
+        "drift_detected": false
+    },
+    {
+        "feature": "writing score",
+        "feature_type": "Numerical",
+        "drift_score": 0.0619,
+        "p_value": 0.3822,
+        "drift_detected": false
+    },
+    {
+        "feature": "gender",
+        "feature_type": "Categorical",
+        "drift_score": 0.0418,
+        "p_value": null,
+        "drift_detected": false
+    },
+    {
+        "feature": "race/ethnicity",
+        "feature_type": "Categorical",
+        "drift_score": 0.0434,
+        "p_value": null,
+        "drift_detected": false
+    },
+    {
+        "feature": "parental level of education",
+        "feature_type": "Categorical",
+        "drift_score": 0.0367,
+        "p_value": null,
+        "drift_detected": false
+    },
+    {
+        "feature": "lunch",
+        "feature_type": "Categorical",
+        "drift_score": 0.0263,
+        "p_value": null,
+        "drift_detected": false
+    },
+    {
+        "feature": "test preparation course",
+        "feature_type": "Categorical",
+        "drift_score": 0.0091,
+        "p_value": null,
+        "drift_detected": false
+    }
+]

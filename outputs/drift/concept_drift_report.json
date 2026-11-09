@@ -1,0 +1,14 @@
+{
+    "reference_metrics": {
+        "MAE": 4.1925414543779205,
+        "RMSE": 5.253012701488983,
+        "R2": 0.8749071742467842
+    },
+    "current_metrics": {
+        "MAE": 4.405143624293311,
+        "RMSE": 5.529023593263331,
+        "R2": 0.877135061108608
+    },
+    "mae_change_percentage": 5.07,
+    "concept_drift_detected": false
+}

@@ -1,0 +1,8 @@
+feature,feature_type,drift_score,p_value,drift_detected
+reading score,Numerical,0.0748,0.1823,False
+writing score,Numerical,0.0619,0.3822,False
+gender,Categorical,0.0418,,False
+race/ethnicity,Categorical,0.0434,,False
+parental level of education,Categorical,0.0367,,False
+lunch,Categorical,0.0263,,False
+test preparation course,Categorical,0.0091,,False

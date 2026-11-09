@@ -1,0 +1,9 @@
+{
+    "reference_mean": 65.60032689675516,
+    "current_mean": 66.6724885439713,
+    "reference_std": 14.616550294856467,
+    "current_std": 13.774277784237018,
+    "ks_statistic": 0.05,
+    "p_value": 0.5600220048872044,
+    "prediction_drift_detected": false
+}
